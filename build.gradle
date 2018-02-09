@@ -29,7 +29,7 @@ war {
 }
 
 // Create a new bundle and copy to S3
-task buildAndCopyDistribution(type:Exec, dependsOn: [build]) {
+task buildAndCopyWarToS3(type:Exec, dependsOn: [build]) {
 
     def move = "move.sh"
 
@@ -41,11 +41,13 @@ task buildAndCopyDistribution(type:Exec, dependsOn: [build]) {
     args "-c", "sh ${move} ${localDist}"
 }
 /*
-// Deploys a given revision to a test environment
-task deployOnTest(type:Exec) {
-    def deploy = "automation/deploy.sh"
+// Deploys a given revision to AWS environment.
+// Deprecated, automation via CodePipeline instead
 
-    def distName = "${jar.baseName}-${jar.deployVersion}.zip"
+task deployOnTest(type:Exec) {
+    def deploy = "deploy.sh"
+
+    def distName = "${war.baseName}-${war.version}.war"
 
     executable "bash"
     args "-c", "sh ${deploy} test ${distName}"
