@@ -21,3 +21,5 @@ if [ $? -eq 0 ]; then
 else
     echo "Copy failed!"
 fi
+
+# Finally, AWS CodePipeline automates deployment from S3 bucket to Elastic Beanstalk app

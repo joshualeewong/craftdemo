@@ -28,12 +28,10 @@ public class MediaDAO extends MySQLAbstractDAO {
 
 	protected Object loadColumns(Map _columns) {
 		Media media = new Media();
-		media.setMediaId((int) _columns.get(getPrimaryKey()));
 		media.setId((String) _columns.get(MediaDAO.COLUMNS.ID.name()));
 		media.setDescription((String) _columns.get(MediaDAO.COLUMNS.DESCRIPTION.name()));
 		String category = (String) _columns.get(MediaDAO.COLUMNS.CATEGORY.name());
 		media.setCategory(category.split(","));
-		media.setType((String) _columns.get(MediaDAO.COLUMNS.TYPE.name()));
 		media.setDateCreated((Date) _columns.get(MediaDAO.COLUMNS.DATE_CREATED.name()));
 		return media;
 	}
@@ -44,7 +42,6 @@ public class MediaDAO extends MySQLAbstractDAO {
 		map.put(MediaDAO.COLUMNS.ID.name(), media.getId());
 		map.put(MediaDAO.COLUMNS.DESCRIPTION.name(), media.getDescription());
 		map.put(MediaDAO.COLUMNS.CATEGORY.name(), media.getCategory());
-		map.put(MediaDAO.COLUMNS.TYPE.name(), media.getType());
 		map.put(MediaDAO.COLUMNS.DATE_CREATED.name(), media.getDateCreated());
 		return map;
 	}
