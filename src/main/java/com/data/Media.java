@@ -3,11 +3,9 @@ package com.data;
 import java.util.Date;
 
 public class Media {
-	private int mediaId;
 	private String id;
 	private String description;
 	private String[] category;
-	private String type;
 	private Date dateCreated;
 	private static String DELIMITER = ", ";
 
@@ -18,20 +16,11 @@ public class Media {
 		id = _id;
 		description = _description;
 		category = _category;
-		type = _type;
 		dateCreated = _dateCreated;
 	}
 
 	public enum MEDIA_TYPE {
 		MOVIES, TV
-	}
-
-	public int getMediaId() {
-		return mediaId;
-	}
-
-	public void setMediaId(int _mediaId) {
-		mediaId = _mediaId;
 	}
 
 	public String getId() {
@@ -64,14 +53,6 @@ public class Media {
 
 	public void setDateCreated(Date _dateCreated) {
 		dateCreated = _dateCreated;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String _type) {
-		type = _type;
 	}
 
 	public String getCategoryToString() {

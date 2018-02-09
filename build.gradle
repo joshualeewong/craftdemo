@@ -18,6 +18,7 @@ dependencies {
 war {
     from 'web'
     baseName = 'ROOT'
+    version = '1.0'
 
     from('src/main/resources') {
         into('WEB-INF/classes/resources')
@@ -30,11 +31,11 @@ war {
 // Create a new bundle and copy to S3
 task buildAndCopyDistribution(type:Exec, dependsOn: [build]) {
 
-    def move = "automation/move.sh"
+    def move = "move.sh"
 
-    def distName = "${jar.baseName}-${jar.version}.zip"
+    def distName = "${war.baseName}-${war.version}.war"
 
-    def localDist = "$buildDir/distributions/${distName}"
+    def localDist = "$buildDir/libs/${distName}"
 
     executable "bash"
     args "-c", "sh ${move} ${localDist}"
