@@ -9,7 +9,7 @@ public class TestCraftDemoServlet {
 
 	@Test
 	public void TestAction() {
-
+	// some changes
 	}
 
 }
