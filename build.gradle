@@ -1,0 +1,52 @@
+apply plugin: 'java'
+apply plugin: 'war'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.google.code.gson:gson:2.8.2'
+    compile 'mysql:mysql-connector-java:5.1.37'
+    compile 'javax.servlet:javax.servlet-api:3.0.1'
+    compile 'org.json:json:20171018'
+
+    testCompile 'junit:junit:4.12'
+    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.9.5'
+}
+
+war {
+    from 'web'
+    baseName = 'ROOT'
+
+    from('src/main/resources') {
+        into('WEB-INF/classes/resources')
+    }
+    from('src/main/java') {
+        into('WEB-INF/classes')
+    }
+}
+
+// Create a new bundle and copy to S3
+task buildAndCopyDistribution(type:Exec, dependsOn: [build]) {
+
+    def move = "automation/move.sh"
+
+    def distName = "${jar.baseName}-${jar.version}.zip"
+
+    def localDist = "$buildDir/distributions/${distName}"
+
+    executable "bash"
+    args "-c", "sh ${move} ${localDist}"
+}
+/*
+// Deploys a given revision to a test environment
+task deployOnTest(type:Exec) {
+    def deploy = "automation/deploy.sh"
+
+    def distName = "${jar.baseName}-${jar.deployVersion}.zip"
+
+    executable "bash"
+    args "-c", "sh ${deploy} test ${distName}"
+}
+*/
