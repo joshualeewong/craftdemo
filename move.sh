@@ -5,7 +5,7 @@ AWS="/usr/local/bin/aws"
 APPLICATION_NAME="craftdemo-app"
 
 BUCKET_NAME="jlw-codingprojects"
-FULL_BUCKET="s3://${BUCKET_NAME}/{APPLICATION_NAME}/"
+FULL_BUCKET="s3://${BUCKET_NAME}/${APPLICATION_NAME}/"
 SOURCE_FILE=$1
 
 echo "Application Name: ${APPLICATION_NAME}"
